@@ -38,6 +38,6 @@ keytool -keystore kafka.truststore.jks -alias CARoot -import -file ca.crt -store
 
 rm -f ca.{key,srl} kafka.{crt,csr,key,p12} kafka-signed.crt san.cnf
 
-echo "confluence" > ./broker_creds
+echo "confluence" > ./jks_pass
 
 cd ..

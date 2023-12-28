@@ -22,7 +22,7 @@ configMapGenerator:
 
 - name: kafka-ssl
   files:
-    - ./certs/broker_creds
+    - ./certs/jks_pass
     - ./certs/kafka.keystore.jks
     - ./certs/kafka.truststore.jks
   options:

@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - kafka.yml
+
+images:
+- name: kafka-image
+  newName: docker.io/confluentinc/cp-kafka
+  newTag: "7.5.3"
+
+configMapGenerator:
+- name: kafka-client
+  files:
+    - ./certs/kafka.truststore.jks
+  literals:
+    - sasl.mechanism=PLAIN
+    - security.protocol=SASL_PLAINTEXT
+    - sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="kafkaclient1" password="kafkaclient1-secret";
+  options:
+      disableNameSuffixHash: true
+
+- name: kafka-ssl
+  files:
+    - ./certs/broker_creds
+    - ./certs/kafka.keystore.jks
+    - ./certs/kafka.truststore.jks
+  options:
+      disableNameSuffixHash: true

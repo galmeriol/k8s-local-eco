@@ -14,6 +14,7 @@ minikube start
 ```
 
 ```
+cd eco/kafka_kraft
 chmod a+x *.sh
 ```
 
